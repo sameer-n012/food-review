@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from './components/Header';
 import Reviews from './components/Reviews';
 import { useState } from 'react';
