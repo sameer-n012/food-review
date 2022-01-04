@@ -16,6 +16,7 @@ const NavigationBar = ({ navs }) => {
 			{navs.map((nav) => (
 				<Nav.Item key={nav.link} href={nav.link}>
 					<Nav.Link
+						onSelect={() => console.log('switching tab')} //TODO fix navbar problem and styling
 						active={nav.link === activeLink}
 						className='navigationbar-link p-2'
 					>

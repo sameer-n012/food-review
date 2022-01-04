@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-const StarRating = ({ rating, color, showAll }) => {
+const StarRating = ({ rating, reviewer, color, showAll }) => {
 	let stars = [];
 	const totalStars = showAll ? 5 : Math.ceil(rating);
 
@@ -24,6 +24,12 @@ const StarRating = ({ rating, color, showAll }) => {
 		<div className='star-rating-div'>
 			{stars}
 			<span>({rating})</span>
+			<span>
+				by{' '}
+				{reviewer.length <= 15
+					? reviewer
+					: reviewer.substring(0, 12) + '...'}
+			</span>
 		</div>
 	);
 };
@@ -32,12 +38,14 @@ StarRating.defaultProps = {
 	rating: 5,
 	color: 'black',
 	showAll: true,
+	reviewer: 'Unknown',
 };
 
 StarRating.propTypes = {
 	rating: PropTypes.number.isRequired,
 	color: PropTypes.string,
 	showAll: PropTypes.bool,
+	reviewer: PropTypes.string,
 };
 
 export default StarRating;

@@ -11,6 +11,7 @@ const Home = () => {
 			rest: 'Burger King',
 			rating: 4.5,
 			lastDate: '2021-10-10',
+			author: 'user0',
 			private: true,
 		},
 		{
@@ -19,6 +20,7 @@ const Home = () => {
 			rest: "McDonald's",
 			rating: 4,
 			lastDate: '2021-12-04',
+			author: 'user1',
 			private: false,
 		},
 		{
@@ -27,6 +29,7 @@ const Home = () => {
 			rest: "McDonald's",
 			rating: 5,
 			lastDate: '2021-12-04',
+			author: 'userwithareallylongname',
 			private: true,
 		},
 		{
@@ -35,6 +38,7 @@ const Home = () => {
 			rest: "Wendy's",
 			rating: 2,
 			lastDate: '2021-05-19',
+			author: 'user1',
 			private: true,
 		},
 		{
@@ -43,6 +47,7 @@ const Home = () => {
 			rest: "Wendy's",
 			rating: 3,
 			lastDate: '2021-05-19',
+			author: 'user3',
 			private: false,
 		},
 	]);

@@ -23,7 +23,7 @@ const Review = ({ review, onDelete }) => {
 					{review.rest}: {review.name}
 				</Card.Title>
 				<Card.Text className='small'>
-					<StarRating rating={review.rating} />
+					<StarRating rating={review.rating} reviewer={review.author}/>
 				</Card.Text>
 			</Card.Body>
 			<Card.Footer className='d-flex justify-content-between align-items-center'>

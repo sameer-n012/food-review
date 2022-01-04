@@ -9,6 +9,7 @@ const ActionCard = () => {
 				className='w-50 menu-btn m-2'
 				variant='outline-dark'
 				size='m'
+				onClick={() => console.log('adding review')}
 			>
 				Add Review
 			</Button>
@@ -16,6 +17,7 @@ const ActionCard = () => {
 				className='w-50 menu-btn m-2'
 				variant='outline-dark'
 				size='m'
+				onClick={() => console.log('searching reviews')}
 			>
 				Search
 			</Button>
