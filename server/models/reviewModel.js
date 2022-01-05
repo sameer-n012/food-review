@@ -2,20 +2,25 @@ import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema(
 	{
-		author: {
+		author_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: 'User',
+		},
+		name: {
 			type: String,
 			required: true,
 		},
 		image: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		restaurant: {
 			type: String,
 			requried: true,
 		},
 		lastDate: {
-			type: Date,
+			type: String,
 			required: true,
 		},
 		rating: {
@@ -28,6 +33,7 @@ const reviewSchema = mongoose.Schema(
 		},
 		notes: {
 			type: String,
+			required: false,
 		},
 	},
 	{

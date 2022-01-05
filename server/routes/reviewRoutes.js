@@ -1,9 +1,20 @@
 import express from 'express';
-import { getReviews, getReviewById } from '../controllers/reviewController.js';
+import {
+	getUserReviews,
+	getReviewById,
+	postUserReview,
+	putUserReview,
+	deleteUserReview,
+} from '../controllers/reviewController.js';
 
 const router = express.Router();
 
-router.route('/').get(getReviews);
-router.route('/:id').get(getReviewById);
+//router.route('/user/:userid/cu=:cuserid').get(getUserReviews);
+//router.route('/:reviewid/cu=:cuserid').get(getReviewById);
+router.route('/user/:userid').get(getUserReviews);
+router.route('/:reviewid').get(getReviewById);
+router.post('/post', postUserReview);
+router.put('/update/:reviewid', putUserReview);
+router.delete('/delete/:reviewid', deleteUserReview);
 
 export default router;

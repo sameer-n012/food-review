@@ -14,7 +14,10 @@ const reducers = combineReducers({
 	reviewDetailListReducer,
 });
 
-const initialState = {};
+const userLoggedIn = localStorage.getItem('currentUserId') ? JSON.parse(localStorage.getItem('currentUserId')) : null;
+const initialState = {
+    currentUserId = userLoggedIn,
+};
 
 const store = createStore(
 	reducers,
