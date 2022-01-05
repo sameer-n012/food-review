@@ -17,14 +17,14 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 const usernameExists = asyncHandler(async (req, res) => {
-	console.log(`GET CHECK_USER_NAME_EXISTS with: `);
+	console.log(`GET CHECK_USER_NAME_EXISTS`);
 	const userExists = await User.exists({ username: req.params.username });
 	res.json({ result: userExists });
 	res.status(200);
 });
 
 const getUserNameById = asyncHandler(async (req, res) => {
-	console.log(`GET USER_NAME_BY_ID with: `);
+	console.log(`GET USER_NAME_BY_ID`);
 	const user = await User.findById(req.params.userid).select('username');
 
 	if (user) {
@@ -37,7 +37,7 @@ const getUserNameById = asyncHandler(async (req, res) => {
 });
 
 const getUserById = asyncHandler(async (req, res) => {
-	console.log(`GET_USER_BY_ID with: `);
+	console.log(`GET_USER_BY_ID`);
 	const user = await User.findById(req.params.userid);
 
 	if (user) {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './screens/Home.js';
 import View from './screens/View.js';
 import Signin from './screens/Signin.js';
@@ -10,17 +10,15 @@ import { Container } from 'react-bootstrap';
 
 const App = () => {
 	return (
-		<Router>
-			<main className='py-3'>
-				<Container>
-					<Route path='/' component={Home} exact />
-                    <Route path='/explore' component={Explore} exact/>
-                    <Route path='/review/:id' component={View} exact/>
-                    <Route path='/edit-review/:id' component={Edit} exact/>
-                    <Route path='/signin' component={Signin}/>
-				</Container>
-			</main>
-		</Router>
+		<BrowserRouter>
+			<Routes>
+				<Route path='/' element={<Home />} exact />
+				{/* <Route path='/explore' element={<Explore />} exact />
+				<Route path='/review/:id' element={<View />} exact />
+				<Route path='/edit-review/:id' element={<Edit />} exact />
+				<Route path='/signin' element={<Signin />} /> */}
+			</Routes>
+		</BrowserRouter>
 	);
 };
 

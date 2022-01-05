@@ -1,6 +1,7 @@
 import express from 'express';
 import connectDB from './utils/db.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import reviewRoutes from './routes/reviewRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -10,6 +11,7 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
 	res.send('api is running');

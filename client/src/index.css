@@ -33,15 +33,17 @@ html {
 .review {
 	width: 18rem;
 	height: 20rem;
+	border: 2px solid black;
 }
 
 .action-card {
 	width: 18rem;
 	height: 20rem;
+	border: 2px solid black;
 }
 
 .review-image {
-	width: 18rem;
+	width: 17.7rem;
 	height: 12rem;
 	object-fit: cover;
 }

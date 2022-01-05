@@ -16,7 +16,7 @@ const Reviews = ({ reviews, onDelete }) => {
 				</Col>
 
 				{reviews.map((review) => (
-					<Col key={review.id}>
+					<Col key={review._id}>
 						<Review review={review} onDelete={onDelete} />
 					</Col>
 				))}

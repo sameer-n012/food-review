@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FaTimes, FaEdit, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { Card } from 'react-bootstrap';
 import { formatDate } from '../resources/dateTools.js';
 import StarRating from './StarRating.js';
-import defaultImage from '../resources/defaultImage.png';
+import { listUsername } from '../actions/userActions.js';
 
 const Review = ({ review, onDelete }) => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(listUsername(review.author_id));
+	}, [dispatch]);
+
+	const { loading, error, username } = useSelector(
+		(state) => state.listUsername
+	);
+
 	return (
 		<Card className='review p-0 m-3'>
 			<Card.Img
-				onClick={() => console.log('viewing ', review.id)}
+				onClick={() => console.log('viewing ', review._id)}
 				className='review-image cursor-clickable'
 				variant='top'
-				src={defaultImage}
+				src={review.image ? review.image : '/images/defaultImage.png'}
 			/>
 			<Card.Body
-				onClick={() => console.log('viewing ', review.id)}
+				onClick={() => console.log('viewing ', review._id)}
 				className='cursor-clickable'
 			>
 				<Card.Title className='mb-2'>
-					{review.rest}: {review.name}
+					{review.restaurant}: {review.name}
 				</Card.Title>
 				<Card.Text className='small'>
-					<StarRating rating={review.rating} reviewer={review.author}/>
+					<StarRating
+						rating={review.rating}
+						reviewer={username ? username : 'Unknown'}
+					/>
 				</Card.Text>
 			</Card.Body>
 			<Card.Footer className='d-flex justify-content-between align-items-center'>
@@ -35,22 +49,24 @@ const Review = ({ review, onDelete }) => {
 						<FaRegEyeSlash
 							className='me-3 align-text-top cursor-clickable'
 							onClick={() =>
-								console.log('unprivating ', review.id)
+								console.log('unprivating ', review._id)
 							}
 						/>
 					) : (
 						<FaRegEye
 							className='me-3 align-text-top cursor-clickable'
-							onClick={() => console.log('privating ', review.id)}
+							onClick={() =>
+								console.log('privating ', review._id)
+							}
 						/>
 					)}
 					<FaEdit
 						className='me-3 align-text-top cursor-clickable'
-						onClick={() => console.log('editing ', review.id)}
+						onClick={() => console.log('editing ', review._id)}
 					/>
 					<FaTimes
 						className='align-text-top cursor-clickable'
-						onClick={() => onDelete(review.id)}
+						onClick={() => onDelete(review._id)}
 					/>
 				</div>
 			</Card.Footer>

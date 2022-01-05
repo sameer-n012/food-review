@@ -17,6 +17,7 @@ const ActionCard = () => {
 				className='w-50 menu-btn m-2'
 				variant='outline-dark'
 				size='m'
+				disabled='true' //TODO do this maybe
 				onClick={() => console.log('searching reviews')}
 			>
 				Search

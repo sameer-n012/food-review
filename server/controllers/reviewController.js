@@ -42,6 +42,28 @@ const getReviewById = asyncHandler(async (req, res) => {
 	}
 });
 
+const getExploreReviews = asyncHandler(async (req, res) => {
+	console.log(`GET EXPLORE_REVIEWS`);
+	const limit = req.params.limit;
+	const reviews = await Review.find({ private: false }).limit(limit);
+
+	if (reviews) {
+		// if (
+		// 	review.private &&
+		// 	review.author_id.toString() !== req.params.userid
+		// ) {
+		// 	res.status(403);
+		// 	throw new Error('Access Forbidden');
+		// } else {
+		res.json(reviews);
+		res.status(200);
+		//}
+	} else {
+		res.status(404);
+		throw new Error('Reviews not found');
+	}
+});
+
 const postUserReview = asyncHandler(async (req, res) => {
 	console.log('POST USER_REVIEW');
 	try {
@@ -90,4 +112,5 @@ export {
 	deleteUserReview,
 	getUserReviews,
 	getReviewById,
+	getExploreReviews,
 };
