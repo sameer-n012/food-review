@@ -6,6 +6,7 @@ const StarRating = ({ rating, reviewer, color, showAll }) => {
 	let stars = [];
 	const totalStars = showAll ? 5 : Math.ceil(rating);
 
+	//TODO remove inline styling
 	for (let i = 0; i < totalStars; i++) {
 		stars.push(
 			<span key={i} style={{ color: color }} className='mb-1'>

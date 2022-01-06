@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+//TODO add searching in list reviews
+
 export const listUserReviews = (userid) => async (dispatch) => {
 	try {
 		dispatch({ type: 'REVIEW_LIST_REQUEST' });
+		console.log('in user review list action, userid: ', userid);
 		const { data } = await axios.get(`/api/reviews/user/${userid}`);
 		dispatch({ type: 'REVIEW_LIST_SUCCESS', payload: data });
 	} catch (error) {

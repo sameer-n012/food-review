@@ -4,7 +4,7 @@ import { Card, Button } from 'react-bootstrap';
 
 const ActionCard = () => {
 	return (
-		<Card className='action-card p-1 m-3 align-items-center justify-content-center'>
+		<Card className='action-card border-black-2 p-1 m-3 align-items-center justify-content-center'>
 			<Button
 				className='w-50 menu-btn m-2'
 				variant='outline-dark'
@@ -17,7 +17,7 @@ const ActionCard = () => {
 				className='w-50 menu-btn m-2'
 				variant='outline-dark'
 				size='m'
-				disabled='true' //TODO do this maybe
+				disabled={true} //TODO enable search button
 				onClick={() => console.log('searching reviews')}
 			>
 				Search

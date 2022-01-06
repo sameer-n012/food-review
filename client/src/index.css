@@ -11,6 +11,12 @@ html {
 	font-family: 'Bitter', serif;
 }
 
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -25,21 +31,35 @@ html {
 	color: white;
 }
 
+.header-title-link,
+.header-title-link:hover {
+	color: inherit;
+	text-decoration: inherit;
+	font-size: inherit;
+	font-style: inherit;
+}
+
+.btn {
+	width: 8rem;
+}
+
 .active {
 	background-color: white;
 	color: black;
 }
 
+.border-black-2 {
+	border: 2px solid black;
+}
+
 .review {
 	width: 18rem;
 	height: 20rem;
-	border: 2px solid black;
 }
 
 .action-card {
 	width: 18rem;
 	height: 20rem;
-	border: 2px solid black;
 }
 
 .review-image {
@@ -54,4 +74,12 @@ html {
 
 .star-rating-div span {
 	margin: 0.1rem;
+}
+
+.signin-container {
+	background-color: indianred;
+	width: 30rem;
+	height: 24rem;
+	margin-top: 5rem;
+	border-radius: 25px;
 }

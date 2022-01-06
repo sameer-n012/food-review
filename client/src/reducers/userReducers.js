@@ -1,3 +1,7 @@
+//TODO delete unnecessary user reducers
+//TODO clean up user reducers
+//TODO standardize user reducers
+
 export const usernameExistsReducer = (
 	state = { loading: false, exists: false },
 	action
@@ -14,17 +18,20 @@ export const usernameExistsReducer = (
 	}
 };
 
-export const authenticateUserReducer = (
-	state = { loading: false, cuid: '61d52e3520e403af451fe0a1' },
-	action
-) => {
+export const currentUserReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'AUTHENTICATE_USER_REQUEST':
 			return { loading: true, ...state };
 		case 'AUTHENTICATE_USER_SUCCESS':
-			return { loading: false, cuid: action.payload };
+			console.log('in reducer cuid is: ', action.payload);
+			localStorage.setItem('cuid', action.payload._id); //QUESTION should cuid and/or jwt be stored in local storage
+			localStorage.setItem('cutoken', action.payload.token);
+			return {
+				loading: false,
+				cu: action.payload,
+			};
 		case 'AUTHENTICATE_USER_FAILURE':
-			return { loading: false, cuid: null };
+			return { loading: false, cu: null };
 		default:
 			return state;
 	}

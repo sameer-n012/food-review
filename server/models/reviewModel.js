@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+//TODO add the username in review model
+//so no unneeded api calls
+//will need to reseed database
 
 const reviewSchema = mongoose.Schema(
 	{

@@ -1,5 +1,8 @@
 import { isValidDate } from './dateTools.js';
 
+//TODO create filter parsing function to generate appropriate sort and filter strings
+
+//TODO delete this method
 const searchReviews = (reviewList, searchObj) => {
 	let newReviews = [];
 
@@ -50,7 +53,7 @@ const searchReviews = (reviewList, searchObj) => {
 			newReviews.sort((x, y) => (x.lastDate > y.lastDate ? 1 : -1));
 			break;
 		case 'author':
-			// newReviews.sort((x, y) => (x.lastDate > y.lastDate ? 1 : -1)); TODO
+			// newReviews.sort((x, y) => (x.lastDate > y.lastDate ? 1 : -1)); TODO not sure what this was for
 			break;
 		case 'name':
 			newReviews.sort((x, y) => (x.name > y.name ? 1 : -1));
@@ -72,6 +75,7 @@ const searchReviews = (reviewList, searchObj) => {
 	return newReviews;
 };
 
+//TODO delete this method
 const searchReviewsDefault = (reviewList) => {
 	const searchObj = {
 		nameLike: '',

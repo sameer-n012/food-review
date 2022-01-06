@@ -8,15 +8,19 @@ import Edit from './screens/Edit.js';
 import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
 
+//TODO add routes as screens created
+//TODO delete explore route
+//will be combined with home?
 const App = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<Home />} exact />
+				<Route path='/home' element={<Home />} exact />
 				{/* <Route path='/explore' element={<Explore />} exact />
 				<Route path='/review/:id' element={<View />} exact />
-				<Route path='/edit-review/:id' element={<Edit />} exact />
-				<Route path='/signin' element={<Signin />} /> */}
+                <Route path='/edit-review/:id' element={<Edit />} exact /> */}
+				<Route path='/signin' element={<Signin />} />
 			</Routes>
 		</BrowserRouter>
 	);

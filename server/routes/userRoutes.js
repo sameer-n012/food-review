@@ -7,6 +7,8 @@ import {
 	getUserById,
 } from '../controllers/userController.js';
 
+//TODO add delete, put, and post user routes
+
 const router = express.Router();
 
 router.route('/name/:userid').get(getUserNameById);

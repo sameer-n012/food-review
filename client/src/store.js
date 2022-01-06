@@ -8,8 +8,8 @@ import {
 import {
 	usernameExistsReducer,
 	listUsernameReducer,
-	authenticateUserReducer,
 	userDetailReducer,
+	currentUserReducer,
 } from './reducers/userReducers';
 
 const middleware = [thunk];
@@ -18,15 +18,23 @@ const reducers = combineReducers({
 	reviewDetail: reviewDetailReducer,
 	usernameExists: usernameExistsReducer,
 	listUsername: listUsernameReducer,
-	authenticateUser: authenticateUserReducer,
+	currentUser: currentUserReducer,
 	userDetail: userDetailReducer,
 });
 
-const userLoggedIn = localStorage.getItem('currentUserId')
-	? JSON.parse(localStorage.getItem('currentUserId'))
-	: '61d52e3520e403af451fe0a1'; //TODO set id to null
+//TODO get initial state from local storage
+const cuid =
+	localStorage.getItem('cuid') && localStorage.getItem('cutoken')
+		? localStorage.getItem('cuid')
+		: null;
+
+const cutoken =
+	localStorage.getItem('cuid') && localStorage.getItem('cutoken')
+		? localStorage.getItem('cutoken')
+		: null;
+
 const initialState = {
-	authenticateUser: { cuid: userLoggedIn },
+	//currentUser: { cu: { _id: cuid, token: cutoken }},
 };
 
 const store = createStore(

@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import Review from '../models/reviewModel.js';
 
+//QUESTION should check current user here to make sure they have access?
 const getUserReviews = asyncHandler(async (req, res) => {
 	console.log(`GET USER_REVIEWS`);
 	//let reviews = [];
@@ -21,6 +22,7 @@ const getUserReviews = asyncHandler(async (req, res) => {
 	}
 });
 
+//QUESTION should check current user here to make sure they have access?
 const getReviewById = asyncHandler(async (req, res) => {
 	console.log(`GET REVIEW_BY_ID`);
 	const review = await Review.findById(req.params.reviewid);
@@ -64,6 +66,8 @@ const getExploreReviews = asyncHandler(async (req, res) => {
 	}
 });
 
+//if username in review model
+//TODO validate provided username corresponds to provided userid in post
 const postUserReview = asyncHandler(async (req, res) => {
 	console.log('POST USER_REVIEW');
 	try {
@@ -77,6 +81,8 @@ const postUserReview = asyncHandler(async (req, res) => {
 	}
 });
 
+//if username in review model
+//TODO validate provided username corresponds to provided userid in put
 const putUserReview = asyncHandler(async (req, res) => {
 	console.log('PUT USER_REVIEW');
 	try {
@@ -97,7 +103,7 @@ const deleteUserReview = asyncHandler(async (req, res) => {
 	console.log('DELETE USER_REVIEW');
 	try {
 		const review_id = req.params.reviewid;
-		const deleted = await Review.deleteMany({ _id: review_id });
+		const deleted = await Review.findByIdAndDelete(review_id);
 		res.json(deleted);
 		res.status(200);
 	} catch (error) {

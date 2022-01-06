@@ -8,6 +8,9 @@ import connectDB from './db.js';
 dotenv.config();
 connectDB();
 
+//TODO rerun seeder when changing review model to update database
+//TODO fix postman api calls when changing review model
+
 const importData = async () => {
 	try {
 		await Review.deleteMany();

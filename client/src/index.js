@@ -8,6 +8,8 @@ import thunk from 'redux-thunk';
 import App from './App';
 import store from './store';
 
+//TODO delete unused imports
+
 ReactDOM.render(
 	<Provider store={store}>
 		<App />

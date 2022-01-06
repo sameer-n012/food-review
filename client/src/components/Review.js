@@ -10,6 +10,8 @@ import { listUsername } from '../actions/userActions.js';
 const Review = ({ review, onDelete }) => {
 	const dispatch = useDispatch();
 
+	//TODO do not call listUsername
+	//instead store username in review object
 	useEffect(() => {
 		dispatch(listUsername(review.author_id));
 	}, [dispatch]);
@@ -19,12 +21,12 @@ const Review = ({ review, onDelete }) => {
 	);
 
 	return (
-		<Card className='review p-0 m-3'>
+		<Card className='review border-black-2 p-0 m-3'>
 			<Card.Img
 				onClick={() => console.log('viewing ', review._id)}
 				className='review-image cursor-clickable'
 				variant='top'
-				src={review.image ? review.image : '/images/defaultImage.png'}
+				src={review.image ? review.image : '/images/defaultImage.png'} //TODO check default image works
 			/>
 			<Card.Body
 				onClick={() => console.log('viewing ', review._id)}
@@ -45,7 +47,7 @@ const Review = ({ review, onDelete }) => {
 					Reviewed: {formatDate(review.lastDate)}
 				</p>
 				<div>
-					{review.private ? (
+					{review.private ? ( //TODO maybe remove options to private, edit, delete from footer?
 						<FaRegEyeSlash
 							className='me-3 align-text-top cursor-clickable'
 							onClick={() =>

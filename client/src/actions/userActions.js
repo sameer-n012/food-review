@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+//TODO delete unnecessary user actions (combine some?)
+
 export const checkUsernameExists = (username) => async (dispatch) => {
 	try {
 		dispatch({ type: 'CHECK_USERNAME_EXISTS_REQUEST' });
@@ -15,6 +17,8 @@ export const checkUsernameExists = (username) => async (dispatch) => {
 
 export const authenticateUser = (user) => async (dispatch) => {
 	try {
+		console.log('authenticating user: ');
+		console.log(user);
 		dispatch({ type: 'AUTHENTICATE_USER_REQUEST' });
 		const { data } = await axios.post(`/api/users/auth`, user);
 		dispatch({ type: 'AUTHENTICATE_USER_SUCCESS', payload: data });
