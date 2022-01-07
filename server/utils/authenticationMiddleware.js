@@ -17,12 +17,7 @@ const protect = asyncHandler(async (req, res, next) => {
 		try {
 			token = req.headers.authorization.split(' ')[1];
 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
-			const user = await User.findById(decoded.id).select('_id');
-			if (user) {
-				req.user = user;
-			} else {
-				throw new Error();
-			}
+			req.user = await User.findById(decoded.id).select('_id');
 			next();
 		} catch (error) {
 			console.log(`Error: ${error.message}`);

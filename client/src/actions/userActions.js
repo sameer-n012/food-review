@@ -1,20 +1,5 @@
 import axios from 'axios';
 
-//TODO delete unnecessary user actions (combine some?)
-
-export const checkUsernameExists = (username) => async (dispatch) => {
-	try {
-		dispatch({ type: 'CHECK_USERNAME_EXISTS_REQUEST' });
-		const { data } = await axios.get(`/api/users/exists/${username}`);
-		dispatch({ type: 'CHECK_USERNAME_EXISTS_SUCCESS', payload: data });
-	} catch (error) {
-		dispatch({
-			type: 'CHECK_USERNAME_EXISTS_FAILURE',
-			payload: error.message,
-		});
-	}
-};
-
 export const authenticateUser = (user) => async (dispatch) => {
 	try {
 		console.log('authenticating user: ');
@@ -30,14 +15,13 @@ export const authenticateUser = (user) => async (dispatch) => {
 	}
 };
 
-export const listUsername = (id) => async (dispatch) => {
+export const logoutUser = () => async (dispatch) => {
 	try {
-		dispatch({ type: 'USER_NAME_LIST_REQUEST' });
-		const { data } = await axios.get(`/api/users/name/${id}`);
-		dispatch({ type: 'USER_NAME_LIST_SUCCESS', payload: data });
+		dispatch({ type: 'LOGOUT_USER_REQUEST' });
+		dispatch({ type: 'LOGOUT_USER_SUCCESS', payload: { cu: null } });
 	} catch (error) {
 		dispatch({
-			type: 'USER_NAME_LIST_FAILURE',
+			type: 'LOGOUT_USER_FAILURE',
 			payload: error.message,
 		});
 	}

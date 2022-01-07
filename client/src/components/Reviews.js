@@ -4,9 +4,6 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { searchReviewsDefault } from '../resources/searchReviews.js';
 
 const Reviews = ({ reviews, onDelete }) => {
-
-    
-	//FIXME is this what is causing reviews to not update?
 	reviews.sort((x, y) => (x.lastDate > y.lastDate ? 1 : -1)).reverse();
 
 	//reviews = searchReviewsDefault(reviews);

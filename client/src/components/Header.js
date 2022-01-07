@@ -1,50 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../actions/userActions';
 
-const Header = ({ title, bgColor, txtColor, signin }) => {
-	//TODO add props to switch between signin and login button
-	const onClick = () => {
-		console.log('Click');
+const Header = ({ title, loggedIn }) => {
+	let navigate = useNavigate();
+
+	const dispatch = useDispatch();
+
+	const logoutSignin = () => {
+		if (loggedIn) {
+			dispatch(logoutUser());
+		}
+
+		navigate('/signin');
 	};
 
-	//QUESTION better way to link than href (use react hooks?)
 	return (
-		<Container
-			className='m-0 p-4 header'
-			style={{ backgroundColor: bgColor, color: txtColor }} //TODO remove inline styling
-		>
+		<Container className='m-0 p-4 header'>
 			<h1 className='cursor-clickable'>
-				<a href='/' className='header-title-link'>
+				<a onClick={() => navigate('/')} className='header-title-link'>
 					{title}
 				</a>
 			</h1>
-			{signin ? ( //TODO make switch between signin and logout button
+			{loggedIn ? (
 				<Button
 					className='btn m-2'
 					variant='outline-light'
 					size='m'
-					href='/signin'
+					onClick={() => {
+						logoutSignin();
+					}}
+				>
+					Log Out
+				</Button>
+			) : (
+				<Button
+					className='btn m-2'
+					variant='outline-light'
+					size='m'
+					onClick={() => {
+						logoutSignin();
+					}}
 				>
 					Sign In
 				</Button>
-			) : (
-				<></>
 			)}
 		</Container>
 	);
 };
 
 Header.defaultProps = {
-	bgColor: 'white',
-	txtColor: 'black',
-	signin: true,
+	signin: false,
 };
 
 Header.propTypes = {
 	title: PropTypes.string.isRequired,
-	bgColor: PropTypes.string,
-	txtColor: PropTypes.string,
 	signin: PropTypes.bool,
 };
 

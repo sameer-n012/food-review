@@ -8,14 +8,14 @@ import { listUserReviews, deleteUserReview } from '../actions/reviewActions';
 const Home = () => {
 	const dispatch = useDispatch();
 
-	const { cu } = useSelector((state) => state.authenticateUser);
+	const { loading, error, cu } = useSelector((state) => state.currentUser);
 	console.log(cu);
 
 	useEffect(() => {
-		if (cu._id) {
-			dispatch(listUserReviews(cu._id));
+		if (cu && cu._id && cu.token) {
+			dispatch(listUserReviews(cu._id, cu.token));
 		}
-	}, [dispatch]);
+	}, [dispatch, cu]);
 
 	const reviewList = useSelector((state) => state.reviewList);
 	//console.log(reviewList);
@@ -32,15 +32,17 @@ const Home = () => {
 
 	return (
 		<>
-			<Header title='Food Review' bgColor='indianred' txtColor='white' />
+			<Header title='Food Review' loggedIn={!!cu} />
 			<NavigationBar
 				navs={[
 					{ link: '/', text: 'My Reviews' },
 					{ link: '/explore', text: 'Explore Reviews' },
 				]}
 			/>
-			{!cu._id ? (
+			{!cu ? (
 				<p className='text-center mt-5'>Sign in to see your reviews</p>
+			) : error ? (
+				<p className='text-center mt-5'>Sorry something went wrong</p>
 			) : reviews.length === 0 ? (
 				<p className='text-center mt-5'>You have no reviews</p>
 			) : (

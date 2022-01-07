@@ -5,24 +5,20 @@ import {
 	reviewListReducer,
 	reviewDetailReducer,
 } from './reducers/reviewReducers';
-import {
-	usernameExistsReducer,
-	listUsernameReducer,
-	userDetailReducer,
-	currentUserReducer,
-} from './reducers/userReducers';
+import { userDetailReducer, currentUserReducer } from './reducers/userReducers';
+import { navbarReducer } from './reducers/appReducers';
 
 const middleware = [thunk];
 const reducers = combineReducers({
+	navbar: navbarReducer,
 	reviewList: reviewListReducer,
 	reviewDetail: reviewDetailReducer,
-	usernameExists: usernameExistsReducer,
-	listUsername: listUsernameReducer,
 	currentUser: currentUserReducer,
 	userDetail: userDetailReducer,
 });
 
 //TODO get initial state from local storage
+//NOTE local storage has been taken out for testing
 const cuid =
 	localStorage.getItem('cuid') && localStorage.getItem('cutoken')
 		? localStorage.getItem('cuid')

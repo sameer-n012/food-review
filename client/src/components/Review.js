@@ -8,25 +8,13 @@ import StarRating from './StarRating.js';
 import { listUsername } from '../actions/userActions.js';
 
 const Review = ({ review, onDelete }) => {
-	const dispatch = useDispatch();
-
-	//TODO do not call listUsername
-	//instead store username in review object
-	useEffect(() => {
-		dispatch(listUsername(review.author_id));
-	}, [dispatch]);
-
-	const { loading, error, username } = useSelector(
-		(state) => state.listUsername
-	);
-
 	return (
 		<Card className='review border-black-2 p-0 m-3'>
 			<Card.Img
 				onClick={() => console.log('viewing ', review._id)}
 				className='review-image cursor-clickable'
 				variant='top'
-				src={review.image ? review.image : '/images/defaultImage.png'} //TODO check default image works
+				src={review.image ? review.image : '/images/defaultImage.png'}
 			/>
 			<Card.Body
 				onClick={() => console.log('viewing ', review._id)}
@@ -38,7 +26,9 @@ const Review = ({ review, onDelete }) => {
 				<Card.Text className='small'>
 					<StarRating
 						rating={review.rating}
-						reviewer={username ? username : 'Unknown'}
+						reviewer={
+							review.author_name ? review.author_name : 'Unknown'
+						}
 					/>
 				</Card.Text>
 			</Card.Body>
@@ -47,7 +37,7 @@ const Review = ({ review, onDelete }) => {
 					Reviewed: {formatDate(review.lastDate)}
 				</p>
 				<div>
-					{review.private ? ( //TODO maybe remove options to private, edit, delete from footer?
+					{review.private ? ( //NOTE maybe remove options to private, edit, delete from footer?
 						<FaRegEyeSlash
 							className='me-3 align-text-top cursor-clickable'
 							onClick={() =>
@@ -68,7 +58,7 @@ const Review = ({ review, onDelete }) => {
 					/>
 					<FaTimes
 						className='align-text-top cursor-clickable'
-						onClick={() => onDelete(review._id)}
+						onClick={() => console.log('deleting ', review._id)}
 					/>
 				</div>
 			</Card.Footer>
