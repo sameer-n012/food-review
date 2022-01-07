@@ -1,4 +1,5 @@
 import express from 'express';
+import protect from '../utils/authenticationMiddleware.js';
 import {
 	getUserReviews,
 	getReviewById,
@@ -10,13 +11,11 @@ import {
 
 const router = express.Router();
 
-//router.route('/user/:userid/cu=:cuserid').get(getUserReviews);
-//router.route('/:reviewid/cu=:cuserid').get(getReviewById);
-router.route('/user/:userid').get(getUserReviews);
-router.route('/:reviewid').get(getReviewById);
+router.route('/user/:userid').get(protect, getUserReviews);
+router.route('/:reviewid').get(protect, getReviewById);
 router.route('/explore/:limit').get(getExploreReviews);
-router.post('/post', postUserReview);
-router.put('/update/:reviewid', putUserReview);
-router.delete('/delete/:reviewid', deleteUserReview);
+router.route('/post').post(protect, postUserReview);
+router.route('/update/:reviewid').put(protect, putUserReview);
+router.route('/delete/:reviewid').delete(protect, deleteUserReview);
 
 export default router;

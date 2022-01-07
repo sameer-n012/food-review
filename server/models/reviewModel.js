@@ -1,7 +1,4 @@
 import mongoose from 'mongoose';
-//TODO add the username in review model
-//so no unneeded api calls
-//will need to reseed database
 
 const reviewSchema = mongoose.Schema(
 	{
@@ -9,6 +6,10 @@ const reviewSchema = mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
 			ref: 'User',
+		},
+		author_name: {
+			type: String,
+			required: true,
 		},
 		name: {
 			type: String,

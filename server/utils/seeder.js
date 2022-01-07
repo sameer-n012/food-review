@@ -8,19 +8,17 @@ import connectDB from './db.js';
 dotenv.config();
 connectDB();
 
-//TODO rerun seeder when changing review model to update database
-//TODO fix postman api calls when changing review model
-
 const importData = async () => {
 	try {
 		await Review.deleteMany();
 		await User.deleteMany();
 
 		const createdUsers = await User.insertMany(users);
-		const adminId = createdUsers[0]._id;
 		const sampleReviews = reviews.map((review, index) => {
+			const idx = index % createdUsers.length;
 			return {
-				author_id: createdUsers[index % createdUsers.length],
+				author_id: createdUsers[idx]._id,
+				author_name: users[idx].username,
 				...review,
 			};
 		});

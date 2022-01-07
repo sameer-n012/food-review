@@ -1,7 +1,5 @@
 import bcrypt from 'bcrypt';
 
-//TODO update seeder data to include username in review when changing review model
-
 const reviews = [
 	{
 		name: 'Burger',
