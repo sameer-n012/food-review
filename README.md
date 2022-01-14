@@ -1,6 +1,7 @@
 # Food Review
 
-This project was made using MongoDB, Nodejs, Express, React, and Redux.
+This project was made by [Sameer N.](https://github.com/sameer-n012) using MongoDB, Nodejs, Express, React, and Redux.
+This project was inspired by and built based on tutorial videos by [Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA) and [JavaScript Mastery](https://www.youtube.com/channel/UCmXmlB4-HJytD7wek0Uo97A)
 
 ## Run Instructions
 
