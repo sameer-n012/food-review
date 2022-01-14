@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import reviewRoutes from './routes/reviewRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import imageRoutes from './routes/imageRoutes.js';
+import testRoutes from './routes/testRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/images', imageRoutes);
+app.use('/api/tests', testRoutes);
 
 const port = process.env.PORT || 5000;
 const mode = process.env.NODE_ENV;

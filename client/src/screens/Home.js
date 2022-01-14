@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import NavigationBar from '../components/NavigationBar';
 import Reviews from '../components/Reviews';
 import { Container } from 'react-bootstrap';
@@ -21,9 +22,9 @@ const Home = () => {
 
 	useEffect(() => {
 		if (navtab === 0 && cu && cu._id && cu.token) {
-			dispatch(listUserReviews(cu._id, cu.token));
+			dispatch(listUserReviews(cu._id, cu.token, ''));
 		} else if (navtab === 1) {
-			dispatch(listExploreReviews(10));
+			dispatch(listExploreReviews(10, ''));
 		}
 	}, [dispatch, cu, navtab]);
 
@@ -45,7 +46,7 @@ const Home = () => {
 					{ link: '/explore', text: 'Explore Reviews' },
 				]}
 			/>
-			<Container className='p-2 mt-5'>
+			<Container className='p-2 mt-5 above-footer'>
 				{usererror || reviewerror ? (
 					<p className='text-center'>Sorry something went wrong</p>
 				) : !cu && navtab === 0 ? (
@@ -56,6 +57,7 @@ const Home = () => {
 					<Reviews reviews={reviews} onDelete={deleteUserReview()} />
 				)}
 			</Container>
+			<Footer />
 		</>
 	);
 };

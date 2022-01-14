@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { deleteUserReview } from '../actions/reviewActions';
 import Header from '../components/Header';
-import { Container, Col, Row } from 'react-bootstrap';
+import Footer from '../components/Footer';
+import { Container } from 'react-bootstrap';
 import ViewDetails from '../components/ViewDetails';
 
 const View = () => {
@@ -15,7 +14,7 @@ const View = () => {
 	return (
 		<div>
 			<Header title='Food Review' loggedIn={!!cu} />
-			<Container className='p-2 mt-5'>
+			<Container className='p-2 mt-5 above-footer'>
 				{usererror || reviewerror || !review ? (
 					<p className='text-center mt-5'>
 						Sorry something went wrong
@@ -24,6 +23,7 @@ const View = () => {
 					<ViewDetails review={review} cu={cu} />
 				)}
 			</Container>
+			<Footer />
 		</div>
 	);
 };

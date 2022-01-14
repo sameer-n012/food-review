@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './screens/Home.js';
 import View from './screens/View.js';
 import Signin from './screens/Signin.js';
 import Edit from './screens/Edit.js';
 import Settings from './screens/Settings.js';
-import { useDispatch } from 'react-redux';
-import { Container } from 'react-bootstrap';
 
 const App = () => {
 	return (

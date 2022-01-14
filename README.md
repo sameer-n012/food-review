@@ -8,13 +8,13 @@ This project was inspired by and built based on tutorial videos by [Traversy Med
 -   Login and logout functionality for users
 -   Creation, modification, and deletion of user accounts
 -   User reviews can include:
-    -- Food name
-    -- Restaurant name
-    -- Reviewer username
-    -- Rating
-    -- Review date
-    -- Any notes by the reviewer
-    -- An image of the food
+    -   Food name
+    -   Restaurant name
+    -   Reviewer username
+    -   Rating
+    -   Review date
+    -   Any notes by the reviewer
+    -   An image of the food
 -   Creation, modification, and deletion of a user's food reviews
 -   Uploading and storing images for food reviews on the server
 -   Ability for users to to show or hide reviews by marking them as public or private
@@ -71,3 +71,9 @@ To access the application, go to [http://localhost:3000](http://localhost:3000) 
 -   [yarn](https://www.npmjs.com/package/yarn)
 
 </details>
+
+## Image Attribution
+
+-   [Wikimedia Commons](https://commons.wikimedia.org) ([Image](https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg))
+-   [FontAwesome Icons](https://fontawesome.com) ([License](https://fontawesome.com/license/free))
+-   [Icons8](https://icons8.com) ([License](https://intercom.help/icons8-7fb7577e8170/en/articles/5534926-universal-multimedia-licensing-agreement-for-icons8))

@@ -2,23 +2,29 @@ import axios from 'axios';
 
 //TODO add searching in list reviews
 
-export const listUserReviews = (userid, usertoken) => async (dispatch) => {
-	try {
-		dispatch({ type: 'REVIEW_LIST_REQUEST' });
-		const headers = { Authorization: `Bearer ${usertoken}` };
-		const { data } = await axios.get(`/api/reviews/user/${userid}`, {
-			headers: headers,
-		});
-		dispatch({ type: 'REVIEW_LIST_SUCCESS', payload: data });
-	} catch (error) {
-		dispatch({ type: 'REVIEW_LIST_FAILURE', payload: error.message });
-	}
-};
+export const listUserReviews =
+	(userid, usertoken, searchString) => async (dispatch) => {
+		try {
+			dispatch({ type: 'REVIEW_LIST_REQUEST' });
+			const headers = { Authorization: `Bearer ${usertoken}` };
+			const { data } = await axios.get(
+				`/api/reviews/user/${userid}/${searchString}`,
+				{
+					headers: headers,
+				}
+			);
+			dispatch({ type: 'REVIEW_LIST_SUCCESS', payload: data });
+		} catch (error) {
+			dispatch({ type: 'REVIEW_LIST_FAILURE', payload: error.message });
+		}
+	};
 
-export const listExploreReviews = (limit) => async (dispatch) => {
+export const listExploreReviews = (limit, searchString) => async (dispatch) => {
 	try {
 		dispatch({ type: 'REVIEW_LIST_REQUEST' });
-		const { data } = await axios.get(`/api/reviews/explore/${limit}`);
+		const { data } = await axios.get(
+			`/api/reviews/explore/${limit}/${searchString}`
+		);
 		dispatch({ type: 'REVIEW_LIST_SUCCESS', payload: data });
 	} catch (error) {
 		dispatch({

@@ -2,19 +2,6 @@ import fs from 'fs';
 import asyncHandler from 'express-async-handler';
 import { generateImageName } from '../utils/imageName.js';
 
-const convertToBase64 = (file) => {
-	return new Promise((resolve, reject) => {
-		const fileReader = new FileReader();
-		fileReader.readAsDataURL(file);
-		fileReader.onload = () => {
-			resolve(fileReader.result);
-		};
-		fileReader.onerror = (error) => {
-			reject(error);
-		};
-	});
-};
-
 const getImage = asyncHandler(async (req, res) => {
 	console.log(`GET IMAGE`);
 

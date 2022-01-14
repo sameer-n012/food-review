@@ -26,7 +26,7 @@ const Header = ({ title, loggedIn }) => {
 	return (
 		<Container className='m-0 p-4 header'>
 			<h1 className='cursor-clickable'>
-				<a onClick={() => navigate('/')} className='header-title-link'>
+				<a onClick={() => navigate('/')} className='not-link'>
 					{title}
 				</a>
 			</h1>

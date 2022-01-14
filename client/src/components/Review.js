@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FaTimes, FaEdit, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { Card } from 'react-bootstrap';
 import { formatDate } from '../resources/dateTools.js';
 import StarRating from './StarRating.js';
