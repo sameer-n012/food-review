@@ -10,7 +10,9 @@ Tp access the application, go to [http://localhost:3000](http://localhost:3000) 
 
 ### Nodejs Project Dependency List:
 
--   [axios](https://axios-http.com/)
+<details>
+<summary>See Dependency List</summary>
+-   [Axios](https://axios-http.com/)
 -   [bcrypt](https://www.npmjs.com/package/bcrypt)
 -   [body-parser](https://www.npmjs.com/package/body-parser)
 -   [Bootstrap 5](https://getbootstrap.com/)
@@ -34,3 +36,4 @@ Tp access the application, go to [http://localhost:3000](http://localhost:3000) 
 -   [Redux Devtools Extension](https://www.npmjs.com/package/redux-devtools-extension)
 -   [Redux Thunk](https://www.npmjs.com/package/redux-thunk)
 -   [web-vitals](https://www.npmjs.com/package/web-vitals)
+</details>
