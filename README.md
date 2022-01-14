@@ -2,16 +2,17 @@
 
 This project was made using MongoDB, Nodejs, Express, React, and Redux.
 
-### Run Instructions
+## Run Instructions
 
-To run the server, run the command `npm start` in the server directory.
-To run the client, run the command `npm start` in the client directory.
-Tp access the application, go to [http://localhost:3000](http://localhost:3000) in your browser.
+To run the server, run the command `npm start` in the server directory. \
+To run the client, run the command `npm start` in the client directory. \
+To access the application, go to [http://localhost:3000](http://localhost:3000) in your browser after starting the client and the server.
 
-### Nodejs Project Dependency List:
+## Nodejs Project Dependency List:
 
 <details>
 <summary>See Dependency List</summary>
+
 -   [Axios](https://axios-http.com/)
 -   [bcrypt](https://www.npmjs.com/package/bcrypt)
 -   [body-parser](https://www.npmjs.com/package/body-parser)
