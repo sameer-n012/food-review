@@ -6,7 +6,11 @@ import {
 	reviewDetailReducer,
 } from './reducers/reviewReducers';
 import { currentUserReducer } from './reducers/userReducers';
-import { navbarReducer, storedImageReducer } from './reducers/appReducers';
+import {
+	navbarReducer,
+	storedImageReducer,
+	searchObjectReducer,
+} from './reducers/appReducers';
 
 const middleware = [thunk];
 const reducers = combineReducers({
@@ -15,6 +19,7 @@ const reducers = combineReducers({
 	reviewDetail: reviewDetailReducer,
 	currentUser: currentUserReducer,
 	storedImages: storedImageReducer,
+	searchObject: searchObjectReducer,
 });
 
 const initialState = {};

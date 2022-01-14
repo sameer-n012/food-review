@@ -18,6 +18,10 @@ body,
 	min-height: 100vh;
 }
 
+#root {
+	position: relative;
+}
+
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -31,7 +35,7 @@ body,
 }
 
 .above-footer {
-	padding-bottom: 6.5rem !important;
+	padding-bottom: 7.5rem !important;
 }
 
 .footer {

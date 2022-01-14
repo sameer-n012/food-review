@@ -19,12 +19,18 @@ const Home = () => {
 	const { reviews, error: reviewerror } = useSelector(
 		(state) => state.reviewList
 	);
+	const { searchobj } = useSelector((state) => state.searchObject);
 
 	useEffect(() => {
+		let searchString = 'none';
+		if (searchobj) {
+			//TODO convert search object to search string
+		}
+
 		if (navtab === 0 && cu && cu._id && cu.token) {
-			dispatch(listUserReviews(cu._id, cu.token, ''));
+			dispatch(listUserReviews(cu._id, cu.token, searchString));
 		} else if (navtab === 1) {
-			dispatch(listExploreReviews(10, ''));
+			dispatch(listExploreReviews(10, searchString));
 		}
 	}, [dispatch, cu, navtab]);
 

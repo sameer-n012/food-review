@@ -53,3 +53,25 @@ export const storedImageReducer = (
 			return state;
 	}
 };
+
+export const searchObjectReducer = (
+	state = { loading: false, searchobj: {} },
+	action
+) => {
+	switch (action.type) {
+		case 'SEARCH_UPDATE_REQUEST':
+			return { ...state, loading: true };
+		case 'SEARCH_UPDATE_SUCCESS':
+			return { loading: false, error: null, searchobj: action.payload };
+		case 'SEARCH_UPDATE_FAILURE':
+			return { loading: false, error: action.payload, searchobj: null };
+		case 'CLEAR_SEARCH_REQUEST':
+			return { ...state, loading: true };
+		case 'CLEAR_SEARCH_SUCCESS':
+			return { loading: false, error: null, searchobj: null };
+		case 'CLEAR_SEARCH_FAILURE':
+			return { ...state, loading: false, error: action.payload };
+		default:
+			return state;
+	}
+};

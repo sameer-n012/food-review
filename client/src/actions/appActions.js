@@ -66,3 +66,27 @@ export const clearImageList = () => async (dispatch) => {
 		});
 	}
 };
+
+export const updateSearchObject = (searchObject) => async (dispatch) => {
+	try {
+		dispatch({ type: 'SEARCH_UPDATE_REQUEST' });
+		dispatch({ type: 'SEARCH_UPDATE_SUCCESS', payload: searchObject });
+	} catch (error) {
+		dispatch({
+			type: 'SEARCH_UPDATE_FAILURE',
+			payload: error.message,
+		});
+	}
+};
+
+export const clearSearchObject = () => async (dispatch) => {
+	try {
+		dispatch({ type: 'CLEAR_SEARCH_REQUEST' });
+		dispatch({ type: 'CLEAR_SEARCH_SUCCESS' });
+	} catch (error) {
+		dispatch({
+			type: 'CLEAR_SEARCH_FAILURE',
+			payload: error.message,
+		});
+	}
+};
