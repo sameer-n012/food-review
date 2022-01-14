@@ -9,7 +9,7 @@ const Reviews = ({ reviews, onDelete }) => {
 	//reviews = searchReviewsDefault(reviews);
 
 	return (
-		<Container fluid className='d-flex p-2 mt-5'>
+		<Container fluid className='d-flex'>
 			<Row xs='auto'>
 				<Col>
 					<ActionCard />

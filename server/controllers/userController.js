@@ -3,11 +3,13 @@ import User from '../models/userModel.js';
 import generateToken from '../utils/token.js';
 import { checkCredentialFormatting } from '../utils/credentialFormatting.js';
 import Review from '../models/reviewModel.js';
+import bcrypt from 'bcrypt';
 
 const authUser = asyncHandler(async (req, res) => {
 	console.log(`POST AUTH_USER`);
 	const { username, password } = req.body;
 	const user = await User.findOne({ username: username });
+
 	const passMatches = await user.matchPassword(password);
 	if (user && passMatches) {
 		res.json({
@@ -29,21 +31,6 @@ const usernameExists = asyncHandler(async (req, res) => {
 	const userExists = await User.exists({ username: req.params.username });
 	res.json({ result: userExists });
 	res.status(200);
-});
-
-//TODO stop using getUserNameById
-//will contain username in review model
-const getUserNameById = asyncHandler(async (req, res) => {
-	console.log(`GET USER_NAME_BY_ID`);
-	const user = await User.findById(req.params.userid).select('username');
-
-	if (user) {
-		res.json(user);
-		res.status(200);
-	} else {
-		res.status(404);
-		throw new Error('User not found');
-	}
 });
 
 const getUserById = asyncHandler(async (req, res) => {
@@ -86,7 +73,9 @@ const postUser = asyncHandler(async (req, res) => {
 			res.status(400);
 			throw new Error('Invalid post user');
 		} else {
+			user.password = bcrypt.hashSync(user.password, 10);
 			const created = await User.create(user);
+
 			res.status(201);
 			res.json({
 				_id: created._id,
@@ -96,6 +85,7 @@ const postUser = asyncHandler(async (req, res) => {
 		}
 	} catch (error) {
 		if (error.message !== 'Invalid authentication') {
+			console.log(error.message);
 			res.status(400);
 			error.message = 'Invalid post user';
 		}
@@ -114,20 +104,35 @@ const putUser = asyncHandler(async (req, res) => {
 	console.log(`PUT EXISTING_USER`);
 	//uses the protect auth middleware to check jwt
 	try {
-		const { user } = req.body;
-		const userExists = await User.exists({ _id: user._id });
+		const userid = req.params.userid;
+		const { oldpassword, user } = req.body;
+		const dbUser = await User.findById(userid);
+		const userExists = await User.exists({ username: user.username });
+		const passMatches = await dbUser.matchPassword(oldpassword);
 		if (
-			!userExists ||
+			!dbUser ||
+			(userExists && user.username !== dbUser.username) ||
 			!checkCredentialFormatting(user.username, user.password)
 		) {
 			res.status(400);
 			throw new Error('Invalid put user');
-		} else if (user._id !== req.user._id.toString()) {
+		} else if (
+			user._id !== req.user._id.toString() ||
+			userid !== user._id ||
+			!passMatches
+		) {
 			res.status(401);
 			throw new Error('Invalid authentication');
 		} else {
-			const updated = await User.findByIdAndUpdate(user._id, user);
-
+			user.password = bcrypt.hashSync(user.password, 10);
+			const updated = await User.findByIdAndUpdate(
+				user._id,
+				{
+					username: user.username,
+					password: user.password,
+				},
+				{ new: true }
+			);
 			res.status(201);
 			res.json({
 				_id: updated._id,
@@ -136,6 +141,7 @@ const putUser = asyncHandler(async (req, res) => {
 		}
 	} catch (error) {
 		if (error.message !== 'Invalid authentication') {
+			console.log(error.message);
 			res.status(400);
 			error.message = 'Invalid put user';
 		}
@@ -177,12 +183,4 @@ const deleteUser = asyncHandler(async (req, res) => {
 	}
 });
 
-export {
-	authUser,
-	usernameExists,
-	getUserNameById,
-	getUserById,
-	postUser,
-	putUser,
-	deleteUser,
-};
+export { authUser, usernameExists, getUserById, postUser, putUser, deleteUser };

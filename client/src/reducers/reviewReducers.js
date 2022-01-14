@@ -1,8 +1,3 @@
-//TODO clean up review reducers
-//TODO standardize review reducers
-//QUESTION should post, put, and delete actions affect reviews state
-//since app anyway calls to db on reload of reviews
-
 export const reviewListReducer = (
 	state = { loading: false, reviews: [] },
 	action
@@ -59,29 +54,26 @@ export const reviewDetailReducer = (
 ) => {
 	switch (action.type) {
 		case 'REVIEW_DETAIL_REQUEST':
-			return { loading: true, ...state };
-		case 'REVIEW_DETAIL_SUCCESS':
-			return { loading: false, error: null, review: action.payload };
-		case 'REVIEW_DETAIL_FAILURE':
-			return { loading: false, error: action.payload, ...state };
 		case 'POST_REVIEW_REQUEST':
-			return { loading: true, ...state };
-		case 'POST_REVIEW_SUCCESS':
-			return { loading: false, error: null, review: action.payload };
-		case 'POST_REVIEW_FAILURE':
-			return { loading: false, error: action.payload, ...state };
 		case 'UPDATE_REVIEW_REQUEST':
 			return { loading: true, ...state };
+		case 'REVIEW_DETAIL_SUCCESS':
+		case 'POST_REVIEW_SUCCESS':
 		case 'UPDATE_REVIEW_SUCCESS':
 			return { loading: false, error: null, review: action.payload };
+		case 'REVIEW_DETAIL_FAILURE':
+		case 'POST_REVIEW_FAILURE':
 		case 'UPDATE_REVIEW_FAILURE':
-			return { loading: false, error: action.payload, ...state };
+			return { loading: false, error: action.payload, review: null };
 		case 'DELETE_REVIEW_REQUEST':
+		case 'CLEAR_REVIEW_DETAIL_REQUEST':
 			return { loading: true, ...state };
 		case 'DELETE_REVIEW_SUCCESS':
+		case 'CLEAR_REVIEW_DETAIL_SUCCESS':
 			return { loading: false, error: null, review: null };
 		case 'DELETE_REVIEW_FAILURE':
-			return { loading: false, error: action.payload, ...state };
+		case 'CLEAR_REVIEW_DETAIL_FAILURE':
+			return { loading: false, error: action.payload, review: null };
 		default:
 			return state;
 	}

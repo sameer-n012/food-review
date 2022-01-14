@@ -4,6 +4,9 @@ import { Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../actions/userActions';
+import { clearImageList } from '../actions/appActions';
+import { FaCog } from 'react-icons/fa';
+import { clearCurrentReview } from '../actions/reviewActions';
 
 const Header = ({ title, loggedIn }) => {
 	let navigate = useNavigate();
@@ -12,6 +15,8 @@ const Header = ({ title, loggedIn }) => {
 
 	const logoutSignin = () => {
 		if (loggedIn) {
+			dispatch(clearCurrentReview());
+			dispatch(clearImageList());
 			dispatch(logoutUser());
 		}
 
@@ -25,29 +30,44 @@ const Header = ({ title, loggedIn }) => {
 					{title}
 				</a>
 			</h1>
-			{loggedIn ? (
-				<Button
-					className='btn m-2'
-					variant='outline-light'
-					size='m'
-					onClick={() => {
-						logoutSignin();
-					}}
-				>
-					Log Out
-				</Button>
-			) : (
-				<Button
-					className='btn m-2'
-					variant='outline-light'
-					size='m'
-					onClick={() => {
-						logoutSignin();
-					}}
-				>
-					Sign In
-				</Button>
-			)}
+			<Container className='me-0 ms-0 float-right d-flex justify-content-end w-50'>
+				{loggedIn ? (
+					<>
+						<Button
+							className='btn m-2'
+							variant='outline-light'
+							size='m'
+							style={{ width: '3rem' }}
+							onClick={() => {
+								navigate('/settings');
+							}}
+						>
+							<FaCog />
+						</Button>
+						<Button
+							className='btn m-2'
+							variant='outline-light'
+							size='m'
+							onClick={() => {
+								logoutSignin();
+							}}
+						>
+							Log Out
+						</Button>
+					</>
+				) : (
+					<Button
+						className='btn m-2'
+						variant='outline-light'
+						size='m'
+						onClick={() => {
+							logoutSignin();
+						}}
+					>
+						Sign In
+					</Button>
+				)}
+			</Container>
 		</Container>
 	);
 };

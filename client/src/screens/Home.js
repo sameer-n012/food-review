@@ -3,23 +3,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import Header from '../components/Header';
 import NavigationBar from '../components/NavigationBar';
 import Reviews from '../components/Reviews';
-import { listUserReviews, deleteUserReview } from '../actions/reviewActions';
+import { Container } from 'react-bootstrap';
+import {
+	listUserReviews,
+	deleteUserReview,
+	listExploreReviews,
+} from '../actions/reviewActions';
 
 const Home = () => {
 	const dispatch = useDispatch();
 
-	const { loading, error, cu } = useSelector((state) => state.currentUser);
-	console.log(cu);
+	const { error: usererror, cu } = useSelector((state) => state.currentUser);
+	const { navtab } = useSelector((state) => state.navbar);
+	const { reviews, error: reviewerror } = useSelector(
+		(state) => state.reviewList
+	);
 
 	useEffect(() => {
-		if (cu && cu._id && cu.token) {
+		if (navtab === 0 && cu && cu._id && cu.token) {
 			dispatch(listUserReviews(cu._id, cu.token));
+		} else if (navtab === 1) {
+			dispatch(listExploreReviews(10));
 		}
-	}, [dispatch, cu]);
-
-	const reviewList = useSelector((state) => state.reviewList);
-	//console.log(reviewList);
-	const { reviews } = reviewList;
+	}, [dispatch, cu, navtab]);
 
 	//delete review
 	// const deleteReview = (id) => {
@@ -39,15 +45,17 @@ const Home = () => {
 					{ link: '/explore', text: 'Explore Reviews' },
 				]}
 			/>
-			{!cu ? (
-				<p className='text-center mt-5'>Sign in to see your reviews</p>
-			) : error ? (
-				<p className='text-center mt-5'>Sorry something went wrong</p>
-			) : reviews.length === 0 ? (
-				<p className='text-center mt-5'>You have no reviews</p>
-			) : (
-				<Reviews reviews={reviews} onDelete={deleteUserReview()} />
-			)}
+			<Container className='p-2 mt-5'>
+				{usererror || reviewerror ? (
+					<p className='text-center'>Sorry something went wrong</p>
+				) : !cu && navtab === 0 ? (
+					<p className='text-center'>Sign in to see your reviews</p>
+				) : reviews.length === 0 ? (
+					<p className='text-center'>You have no reviews</p>
+				) : (
+					<Reviews reviews={reviews} onDelete={deleteUserReview()} />
+				)}
+			</Container>
 		</>
 	);
 };

@@ -8,7 +8,6 @@ const NavigationBar = ({ navs }) => {
 	const dispatch = useDispatch();
 
 	const { navtab } = useSelector((state) => state.navbar);
-	console.log(navtab);
 
 	const toggleActiveNavtab = (tabNum) => {
 		dispatch(changeNavtab(tabNum));
@@ -22,14 +21,21 @@ const NavigationBar = ({ navs }) => {
 			defaultActiveKey={navs[navtab].link}
 		>
 			{navs.map((nav, index) => (
-				<Nav.Item key={index} href={nav.link}>
+				<Nav.Item
+					key={index}
+					href={nav.link}
+					onClick={() => {
+						console.log('switching to tab ', index);
+						toggleActiveNavtab(index);
+					}}
+				>
 					<Nav.Link
-						onSelect={() => {
-							console.log('switching tab');
-							toggleActiveNavtab(index);
-						}} //FIXME navbar not switching active tabs on click
 						active={index === navtab}
-						className='navigationbar-link p-2' //FIXME change unactive tab styling
+						style={{
+							color: index === navtab ? 'black' : 'white',
+							border: 'none',
+						}}
+						className='navigationbar-link p-2'
 					>
 						{nav.text}
 					</Nav.Link>

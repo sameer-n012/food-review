@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 const reviews = [
 	{
 		name: 'Burger',
-		image: '/images/0.jpg',
+		image: '0.jpg',
 		restaurant: 'Burger King',
 		rating: 4.5,
 		lastDate: '2021-10-10',
@@ -12,7 +12,7 @@ const reviews = [
 	},
 	{
 		name: 'Fries',
-		image: '/images/1.jpg',
+		image: '1.jpg',
 		restaurant: "McDonald's",
 		rating: 4,
 		lastDate: '2021-12-04',
@@ -21,7 +21,7 @@ const reviews = [
 	},
 	{
 		name: 'McFlurry',
-		image: '/images/2.jpg',
+		image: '2.jpg',
 		restaurant: "McDonald's",
 		rating: 5,
 		lastDate: '2021-12-04',
@@ -30,7 +30,7 @@ const reviews = [
 	},
 	{
 		name: 'Burger',
-		image: '/images/3.jpg',
+		image: '3.jpg',
 		restaurant: "Wendy's",
 		rating: 2,
 		lastDate: '2021-05-19',
@@ -39,7 +39,7 @@ const reviews = [
 	},
 	{
 		name: 'Fries',
-		image: '/images/4.jpg',
+		image: '4.jpg',
 		restaurant: "Wendy's",
 		rating: 3,
 		lastDate: '2021-05-19',

@@ -8,9 +8,13 @@ const formatDate = (date) => {
 	return moment(date, 'YYYY-MM-DD', true).format('MMM. Do, YYYY');
 };
 
+const getToday = () => {
+	return moment().format('YYYY-MM-DD');
+};
+
 const isValidDate = (date) => {
 	const md = moment(date, 'YYYY-MM-DD', true);
 	return md.isValid();
 };
 
-export { formatDate, isValidDate };
+export { formatDate, getToday, isValidDate };

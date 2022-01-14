@@ -10,7 +10,7 @@ import User from '../models/userModel.js';
  */
 const getUserReviews = asyncHandler(async (req, res) => {
 	console.log(`GET USER_REVIEWS`);
-	if (req.user._id.toString() === req.params.userid) {
+	if (req.user && req.user._id.toString() === req.params.userid) {
 		const reviews = await Review.find({ author_id: req.params.userid });
 		if (reviews) {
 			res.status(200);
@@ -50,6 +50,28 @@ const getReviewById = asyncHandler(async (req, res) => {
 			req.user._id.toString() === review.author_id.toString() ||
 			!review.private
 		) {
+			res.status(200);
+			res.json(review);
+		} else {
+			res.status(401);
+			throw new Error('Invalid authentication');
+		}
+	} else {
+		res.status(404);
+		throw new Error('Review not found');
+	}
+});
+
+/*
+ * Same as above without jwt authentication middleware
+ */
+const getPublicReviewById = asyncHandler(async (req, res) => {
+	console.log(`GET REVIEW_BY_ID`);
+
+	const review = await Review.findById(req.params.reviewid);
+
+	if (review) {
+		if (!review.private) {
 			res.status(200);
 			res.json(review);
 		} else {
@@ -121,13 +143,14 @@ const putUserReview = asyncHandler(async (req, res) => {
 
 	try {
 		const review_id = req.params.reviewid;
-		const { author_id, author_name, ...review } = req.body;
+		const { review } = req.body;
 		const dbReview = await Review.findById(review_id);
 		if (dbReview.author_id.toString() !== req.user._id.toString()) {
 			res.status(401);
 			throw new Error('Invalid authentication');
 		} else {
-			console.log(review);
+			//console.log(review);
+			//console.log(review_id);
 			const updated = await Review.findByIdAndUpdate(review_id, review, {
 				new: true,
 			});
@@ -152,7 +175,7 @@ const deleteUserReview = asyncHandler(async (req, res) => {
 	console.log('DELETE USER_REVIEW');
 	try {
 		const review_id = req.params.reviewid;
-		console.log(review_id);
+		//console.log(review_id);
 		const dbReview = await Review.findById(review_id);
 		if (dbReview.author_id.toString() !== req.user._id.toString()) {
 			res.status(401);
@@ -177,5 +200,6 @@ export {
 	deleteUserReview,
 	getUserReviews,
 	getReviewById,
+	getPublicReviewById,
 	getExploreReviews,
 };
