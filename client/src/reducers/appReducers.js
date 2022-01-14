@@ -21,7 +21,6 @@ export const storedImageReducer = (
 		case 'GET_IMAGE_REQUEST':
 			return { loading: true, ...state };
 		case 'GET_IMAGE_SUCCESS':
-			//fs.writeFileSync(action.payload);
 			return {
 				loading: false,
 				error: null,
