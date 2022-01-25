@@ -2,6 +2,7 @@ import e from 'express';
 import asyncHandler from 'express-async-handler';
 import Review from '../models/reviewModel.js';
 import User from '../models/userModel.js';
+import { parseSearchString } from '../utils/searchParser.js';
 
 /*
  * Checks if the query user id == token validated id
@@ -10,8 +11,12 @@ import User from '../models/userModel.js';
  */
 const getUserReviews = asyncHandler(async (req, res) => {
 	console.log(`GET USER_REVIEWS`);
+	const searchFilter = parseSearchString(req.params.searchString);
 	if (req.user && req.user._id.toString() === req.params.userid) {
-		const reviews = await Review.find({ author_id: req.params.userid });
+		const reviews = await Review.find({
+			...searchFilter,
+			author_id: req.params.userid,
+		});
 		if (reviews) {
 			res.status(200);
 			res.json(reviews);
@@ -21,6 +26,7 @@ const getUserReviews = asyncHandler(async (req, res) => {
 		}
 	} else {
 		const reviews = await Review.find({
+			...searchFilter,
 			private: false,
 			author_id: req.params.userid,
 		});
@@ -87,7 +93,11 @@ const getPublicReviewById = asyncHandler(async (req, res) => {
 const getExploreReviews = asyncHandler(async (req, res) => {
 	console.log(`GET EXPLORE_REVIEWS`);
 	const limit = req.params.limit;
-	const reviews = await Review.find({ private: false }).limit(limit);
+	const searchFilter = parseSearchString(req.params.searchString);
+	const reviews = await Review.find({
+		...searchFilter,
+		private: false,
+	}).limit(limit);
 
 	if (reviews) {
 		res.status(200);

@@ -7,7 +7,12 @@ const Footer = () => {
 			<Container className=' w-50 d-flex'>
 				<p className='m-0'>Created By Sameer N.</p>
 				<p className='m-0 ms-2'>|</p>
-				<a className='m=0 ms-2 not-link cursor-clickable'>
+				<a
+					className='m=0 ms-2 not-link cursor-clickable'
+					href='https://github.com/sameer-n012/food-review'
+					target='_blank'
+					rel='noopener noreferrer'
+				>
 					Project Github
 				</a>
 			</Container>

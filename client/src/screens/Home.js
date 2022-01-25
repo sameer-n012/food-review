@@ -34,15 +34,6 @@ const Home = () => {
 		}
 	}, [dispatch, cu, navtab]);
 
-	//delete review
-	// const deleteReview = (id) => {
-	// 	console.log('deleting ', id);
-	// 	setReviews(reviews.filter((review) => review.id !== id));
-	// 	useEffect(() => {
-	// 		dispatch(deleteUserReview());
-	// 	}, [dispatch]);
-	// };
-
 	return (
 		<>
 			<Header title='Food Review' loggedIn={!!cu} />
@@ -60,7 +51,7 @@ const Home = () => {
 				) : reviews.length === 0 ? (
 					<p className='text-center'>You have no reviews</p>
 				) : (
-					<Reviews reviews={reviews} onDelete={deleteUserReview()} />
+					<Reviews reviews={reviews} />
 				)}
 			</Container>
 			<Footer />

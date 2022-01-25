@@ -1,5 +1,5 @@
 const parseSearchString = (searchString) => {
-	if (!searchString || searchString == 'none') {
+	if (!searchString || searchString == 'none' || searchString == 'None') {
 		return {};
 	}
 

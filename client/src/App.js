@@ -5,6 +5,7 @@ import View from './screens/View.js';
 import Signin from './screens/Signin.js';
 import Edit from './screens/Edit.js';
 import Settings from './screens/Settings.js';
+import Search from './screens/Search.js';
 
 const App = () => {
 	return (
@@ -16,6 +17,7 @@ const App = () => {
 				<Route path='/edit' element={<Edit />} exact />
 				<Route path='/settings' element={<Settings />} exact />
 				<Route path='/signin' element={<Signin />} exact />
+				<Route path='/search' element={<Search />} exact />
 			</Routes>
 		</BrowserRouter>
 	);

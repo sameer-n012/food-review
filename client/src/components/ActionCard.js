@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { clearSearchObject } from '../actions/appActions';
 import { clearCurrentReview } from '../actions/reviewActions';
 
 const ActionCard = () => {
@@ -13,6 +13,16 @@ const ActionCard = () => {
 		console.log('adding a review');
 		dispatch(clearCurrentReview());
 		navigate('/edit');
+	};
+
+	const gotoSearch = () => {
+		console.log('going to search screen');
+		navigate('/search');
+	};
+
+	const clearSearch = () => {
+		console.log('clearing search');
+		dispatch(clearSearchObject());
 	};
 
 	return (
@@ -29,15 +39,20 @@ const ActionCard = () => {
 				className='w-50 menu-btn m-2'
 				variant='outline-dark'
 				size='m'
-				disabled={true} //TODO enable search button
-				onClick={() => console.log('searching reviews')}
+				onClick={() => gotoSearch()}
+			>
+				Search
+			</Button>
+			<Button
+				className='w-50 menu-btn m-2'
+				variant='outline-dark'
+				size='m'
+				onClick={() => clearSearch()}
 			>
 				Search
 			</Button>
 		</Card>
 	);
 };
-
-ActionCard.propTypes = {};
 
 export default ActionCard;
