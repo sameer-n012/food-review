@@ -129,14 +129,22 @@ body,
 	float: right;
 }
 
-.editFormField {
+.editFormField,
+.editFormLabel {
 	width: 25rem;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.editFormLabel {
-	width: 25rem;
+.editFormField-s,
+.editFormLabel-s {
+	width: 12.5rem;
 	margin-left: auto;
+	margin-right: 0;
+}
+
+.editFormField-s {
+	width: 12.5rem;
+	margin-left: 0;
 	margin-right: auto;
 }

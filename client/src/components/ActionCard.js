@@ -41,7 +41,7 @@ const ActionCard = () => {
 				size='m'
 				onClick={() => gotoSearch()}
 			>
-				Search
+				Edit Search
 			</Button>
 			<Button
 				className='w-50 menu-btn m-2'
@@ -49,7 +49,7 @@ const ActionCard = () => {
 				size='m'
 				onClick={() => clearSearch()}
 			>
-				Search
+				Clear Search
 			</Button>
 		</Card>
 	);

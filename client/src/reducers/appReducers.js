@@ -68,7 +68,7 @@ export const searchObjectReducer = (
 		case 'CLEAR_SEARCH_REQUEST':
 			return { ...state, loading: true };
 		case 'CLEAR_SEARCH_SUCCESS':
-			return { loading: false, error: null, searchobj: null };
+			return { loading: false, error: null, searchobj: {} };
 		case 'CLEAR_SEARCH_FAILURE':
 			return { ...state, loading: false, error: action.payload };
 		default:

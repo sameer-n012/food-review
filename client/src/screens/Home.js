@@ -25,7 +25,8 @@ const Home = () => {
 	useEffect(() => {
 		let searchString = 'none';
 		if (searchobj) {
-			searchString = createSearchString(searchObj);
+			searchString = createSearchString(searchobj);
+			console.log('new search string ', searchString);
 		}
 
 		if (navtab === 0 && cu && cu._id && cu.token) {
@@ -49,8 +50,6 @@ const Home = () => {
 					<p className='text-center'>Sorry something went wrong</p>
 				) : !cu && navtab === 0 ? (
 					<p className='text-center'>Sign in to see your reviews</p>
-				) : reviews.length === 0 ? (
-					<p className='text-center'>You have no reviews</p>
 				) : (
 					<Reviews reviews={reviews} />
 				)}

@@ -21,7 +21,9 @@ export const listExploreReviews = (limit, searchString) => async (dispatch) => {
 	try {
 		dispatch({ type: 'REVIEW_LIST_REQUEST' });
 		const { data } = await axios.get(
-			`/api/reviews/explore/${limit}/${searchString}`
+			`/api/reviews/explore/${limit}/${
+				!!searchString ? searchString : 'none'
+			}`
 		);
 		dispatch({ type: 'REVIEW_LIST_SUCCESS', payload: data });
 	} catch (error) {
