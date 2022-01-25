@@ -10,6 +10,7 @@ import {
 	deleteUserReview,
 	listExploreReviews,
 } from '../actions/reviewActions';
+import { createSearchString } from '../resources/searchReviews';
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Home = () => {
 	useEffect(() => {
 		let searchString = 'none';
 		if (searchobj) {
-			//TODO convert search object to search string
+			searchString = createSearchString(searchObj);
 		}
 
 		if (navtab === 0 && cu && cu._id && cu.token) {

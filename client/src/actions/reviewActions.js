@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-//TODO add searching in list reviews
-
 export const listUserReviews =
 	(userid, usertoken, searchString) => async (dispatch) => {
 		try {
