@@ -5,6 +5,9 @@ export const listUserReviews =
 		try {
 			dispatch({ type: 'REVIEW_LIST_REQUEST' });
 			const headers = { Authorization: `Bearer ${usertoken}` };
+			if (!searchString) {
+				searchString = 'none';
+			}
 			const { data } = await axios.get(
 				`/api/reviews/user/${userid}/${searchString}`,
 				{
@@ -13,6 +16,7 @@ export const listUserReviews =
 			);
 			dispatch({ type: 'REVIEW_LIST_SUCCESS', payload: data });
 		} catch (error) {
+			console.log(error);
 			dispatch({ type: 'REVIEW_LIST_FAILURE', payload: error.message });
 		}
 	};

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateSearchObject, clearSearchObject } from '../actions/appActions';
 import { formatDate, getToday, isValidDate } from '../resources/dateTools';
 
+//TODO test searching
+//TODO add error modal to search form
 const SearchForm = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -82,7 +84,6 @@ const SearchForm = () => {
 	};
 
 	return (
-		//TODO fix styling of search form and add fields
 		<Container fluid className='d-flex flex-column'>
 			<Row className='mb-4'>
 				<Form.Label htmlFor='soAuthorName' className='editFormLabel-s'>
